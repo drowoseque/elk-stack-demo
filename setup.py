@@ -12,5 +12,6 @@ setup(
     install_requires=[
         'click==6.7',
         'tornado==5.0.2',
+        'python-logstash==0.4.6'
     ]
 )
