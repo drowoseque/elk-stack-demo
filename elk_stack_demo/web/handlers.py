@@ -2,7 +2,7 @@ import json
 
 from tornado.web import RequestHandler
 
-from elk_stack_demo.services import gk
+from elk_stack_demo.services import context
 from elk_stack_demo.services.evaluator import evaluate
 
 
@@ -27,11 +27,12 @@ class EvalHandler(RequestHandler):
 
     def initialize(self):
         self.expression = str(self.get_argument('expression'))
+        self.context = context.get(self)
 
     def get(self, *args, **kwargs):
         result = evaluate(self.expression)
-        response = f"""{{
-            'result': {result}
-        }}"""
-
-        self.write_and_finish(response)
+        response = {
+            'result': result
+        }
+        response.update(self.context)
+        self.write_and_finish(json.dumps(response))
