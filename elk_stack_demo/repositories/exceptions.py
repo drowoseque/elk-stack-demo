@@ -13,7 +13,6 @@ def _get_logstash_handler() -> logstash.TCPLogstashHandler:
 
 def _get_logger() -> Logger:
     logger = logging.getLogger(__name__)
-    # logger.setLevel(logging.INFO)
     logger.addHandler(_get_logstash_handler())
     return logger
 
@@ -21,5 +20,5 @@ def _get_logger() -> Logger:
 logger = _get_logger()
 
 
-def log(exception, extra: Dict[str, Any]):
-    logger.error(str(exception), extra=extra)
+def log(exception: Exception, extra: Dict[str, Any]):
+    logger.exception(exception, extra=extra)

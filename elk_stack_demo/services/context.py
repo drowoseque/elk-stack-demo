@@ -7,7 +7,7 @@ _REQUIRED_COOKIE_KEYS = ['_ga', '_ym_uid', 'flocktory-uuid']
 
 def _get_user_identificators(request_handler: RequestHandler) -> Dict[str, Any]:
     return {
-        key: request_handler.get_cookie(key) for key in _REQUIRED_COOKIE_KEYS
+        f'custom_{key}': request_handler.get_cookie(key) for key in _REQUIRED_COOKIE_KEYS
     }
 
 
