@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.0.0
